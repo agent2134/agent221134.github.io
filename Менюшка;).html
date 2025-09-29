@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Меню «Теплі сторінки»</title>
+  <style>
+    :root{
+      --bg:#1e1b18;
+      --bg-2:#2c2622;
+      --bg-3:#3a322d;
+      --text:#f5f0e6;
+      --muted:#d9c7b8;
+      --accent:#b58b6b;
+      --title:#e6d3c1;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+    }
+    /* Header / Navbar */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: var(--bg-2);
+      border-bottom: 2px solid var(--accent);
+    }
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .brand {
+      font-size: 1.4rem;
+      color: var(--title);
+      margin-right: auto;
+    }
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+    }
+    nav a:hover, nav a.active {
+      background: var(--bg-3);
+    }
+
+    /* Page content */
+    main { 
+      max-width: 960px; 
+      margin: 0 auto; 
+      padding: 96px 16px 40px; /* top padding to avoid header overlap */
+    }
+    .section-title {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin: 24px 0 8px;
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 6px;
+    }
+
+    /* Highlight blocks */
+    .highlight {
+      background: var(--bg-3);
+      padding: 14px 16px;
+      border-left: 4px solid var(--accent);
+      margin: 16px 0;
+      font-style: italic;
+      border-radius: 6px;
+    }
+
+    /* Accordion */
+    .acc {
+      cursor: pointer;
+      background: var(--bg-2);
+      color: var(--muted);
+      margin: 18px 0 8px;
+      padding: 10px 12px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+    .acc span.title {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+    }
+    .acc .chev {
+      color: var(--accent);
+      transition: transform .2s ease;
+    }
+    .acc[aria-expanded="true"] .chev {
+      transform: rotate(90deg);
+    }
+    .panel {
+      display: none; /* collapsed by default */
+    }
+    .panel.open {
+      display: block;
+    }
+
+    /* Lists */
+    ul.menu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    ul.menu li {
+      margin: 8px 0;
+      padding: 10px 12px;
+      background: var(--bg-3);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    ul.menu li .icon {
+      width: 1.4em;
+      text-align: center;
+      opacity: 0.9;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 24px;
+      padding: 20px 16px;
+      border-top: 1px solid var(--bg-3);
+      color: #d2c7bb;
+      text-align: center;
+    }
+
+    /* Mobile tweaks */
+    @media (max-width: 600px) {
+      .brand { flex: 1 1 100%; }
+      nav { width: 100%; display: flex; gap: 6px; flex-wrap: wrap; }
+      nav a { flex: 1 1 auto; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="brand">Меню «Теплі сторінки»</div>
+      <nav id="nav">
+        <a href="#special">Страва дня</a>
+        <a href="#cold">Закуски</a>
+        <a href="#hot">Гарячі</a>
+        <a href="#soups">Супи</a>
+        <a href="#mains">Основні</a>
+        <a href="#desserts">Десерти</a>
+        <a href="#drinks">Напої</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Special of the day -->
+    <h2 id="special" class="section-title">⭐ Страва дня</h2>
+    <div class="highlight" id="specialDish"></div>
+
+    <!-- Quote + Question -->
+    <div class="highlight" id="quote"></div>
+    <div class="highlight" id="question"></div>
+
+    <!-- Cold starters -->
+    <div id="cold" class="acc" role="button" aria-expanded="false">
+      <span class="title">🥗 Холодні закуски</span>
+      <span class="chev">›</span>
+    </div>
+    <div class="panel">
+      <ul class="menu">
+        <li><span class="icon">🥗</span><span>Осінній сюжет — салат із гарбуза, руколою та горіхами</span></li>
+        <li><span class="icon">🧀</span><span>Три ноти спокою — асорті сирів із медом та горіхами</span></li>
+        <li><span class="icon">🍞</span><span>Легкий пролог — брускети з буряком і фетою</span></li>
+        <li><span class="icon">🥒</span><span>Діалог у тиші — овочеві палички з хумусом</span></li>
+        <li><span class="icon">🍄</span><span>Смак спогадів — мариновані гриби з цибулею</span></li>
+      </ul>
+    </div>
+
+    <!-- Hot starters -->
+    <div id="hot" class="acc" role="button" aria-expanded="false">
+      <span class="title">🔥 Гарячі закуски</span>
+      <span class="chev">›</span>
+    </div>
+    <div class="panel">
+      <ul class="menu">
+        <li><span class="icon">🍄</span><span>Теплі сторінки — жульєн із грибами та вершками</span></li>
+        <li><span class="icon">🥔</span><span>Нотатки на полях — міні‑деруни зі сметаною</span></li>
+        <li><span class="icon">🧀</span><span>Гарячий діалог — тости з сиром і травами</span></li>
+      </ul>
+    </div>
+
+    <!-- Soups -->
+    <div id="soups" class="acc" role="button" aria-expanded="false">
+      <span class="title">🥣 Перші страви</span>
+      <span class="chev">›</span>
+    </div>
+    <div class="panel">
+      <ul class="menu">
+        <li><span class="icon">🎃</span><span>Крем натхнення — гарбузовий суп‑пюре з насінням</span></li>
+        <li><span class="icon">🍲</span><span>Класика жанру — борщ із пампушками</span></li>
+        <li><span class="icon">🍄</span><span>Лісова історія — грибний суп із локшиною</span></li>
+      </ul>
+    </div>
+
+    <!-- Mains -->
+    <div id="mains" class="acc" role="button" aria-expanded="false">
+      <span class="title">🍛 Другі страви</span>
+      <span class="chev">›</span>
+    </div>
+    <div class="panel">
+      <ul class="menu">
+        <li><span class="icon">🍗</span><span>Осінній вечір — курка з яблуками та розмарином</span></li>
+        <li><span class="icon">🥩</span><span>Медові рядки — свинина в медово‑гірчичному соусі</span></li>
+        <li><span class="icon">🥟</span><span>Домашня глава — вареники з картоплею та грибами</span></li>
+        <li><span class="icon">🍒</span><span>Солодкий сюжет — вареники з вишнею</span></li>
+        <li><span class="icon">🍝</span><span>Паста натхнення — домашня паста з вершковим соусом</span></li>
+        <li><span class="icon">🥘</span><span>Овочеве рагу «Теплий дім»</span></li>
+        <li><span class="icon">🐟</span><span>Рибна пауза — запечена риба з лимоном і травами</span></li>
+      </ul>
+    </div>
+
+    <!-- Desserts -->
+    <div id="desserts" class="acc" role="button" aria-expanded="false">
+      <span class="title">🍰 Десерти</span>
+      <span class="chev">›</span>
+    </div>
+    <div class="panel">
+      <ul class="menu">
+        <li><span class="icon">🍏</span><span>Солодкий фінал — яблучна шарлотка з корицею</span></li>
+        <li><span class="icon">🍯</span><span>Медові спогади — домашній медовик</span></li>
+        <li><span class="icon">🍮</span><span>Ніжна пауза — чізкейк із карамеллю чи ягодами</span></li>
+      </ul>
+    </div>
+
+    <!-- Drinks -->
+    <div id="drinks" class="acc" role="button" aria-expanded="false">
+      <span class="title">☕ Напої</span>
+      <span class="chev">›</span>
+    </div>
+    <div class="panel">
+      <ul class="menu">
+        <li><span class="icon">☕</span><span>Кава «Відкрита книга»</span></li>
+        <li><span class="icon">🍵</span><span>Чай «Зілля для натхнення» (прозорий чайник із травами)</span></li>
+        <li><span class="icon">🍫</span><span>Гарячий шоколад «Затишок» із маршмелоу</span></li>
+      </ul>
+    </div>
+
+    <footer>
+      Затишна атмосфера, теплі страви та історії у кожному смаку • © Теплі сторінки
+    </footer>
+  </main>
+
+  <script>
+    // Smooth active link highlighting
+    const navLinks = document.querySelectorAll('#nav a');
+    const onNavClick = (e) => {
+      navLinks.forEach(a => a.classList.remove('active'));
+      e.currentTarget.classList.add('active');
+    };
+    navLinks.forEach(a => a.addEventListener('click', onNavClick));
+
+    // Accordion logic – click only on .acc headers
+    const accHeaders = document.querySelectorAll('.acc');
+    accHeaders.forEach((h) => {
+      h.addEventListener('click', () => {
+        const panel = h.nextElementSibling;
+        const isOpen = panel.classList.contains('open');
+        // close all others (optional; comment out if not needed)
+        accHeaders.forEach(other => {
+          const p = other.nextElementSibling;
+          other.setAttribute('aria-expanded','false');
+          p.classList.remove('open');
+        });
+        // toggle current
+        h.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+        panel.classList.toggle('open', !isOpen);
+      });
+    });
+
+    // Quotes & Questions
+    const quotes = [
+      "«Книга — це мрія, яку ви тримаєте в руках.»",
+      "«Затишок — це коли пахне кавою і сторінками.»",
+      "«Іноді одна чашка чаю може змінити настрій дня.»",
+      "«Тиша — найкращий супутник теплого вечора.»"
+    ];
+    const questions = [
+      "Яка книга змінила ваше життя?",
+      "З ким би ви хотіли випити каву з минулого чи майбутнього?",
+      "Який смак дитинства пам’ятаєте найяскравіше?",
+      "Якби ваше життя було романом — як би він називався?",
+      "Яка музика створює вам відчуття дому?"
+    ];
+    document.getElementById('quote').innerText =
+      quotes[Math.floor(Math.random() * quotes.length)];
+    document.getElementById('question').innerText =
+      "Питання для розмови: " +
+      questions[Math.floor(Math.random() * questions.length)];
+
+    // Special of the day – pick from all items
+    const allDishes = [
+      "Осінній сюжет — салат із гарбуза, руколою та горіхами",
+      "Три ноти спокою — асорті сирів із медом та горіхами",
+      "Легкий пролог — брускети з буряком і фетою",
+      "Діалог у тиші — овочеві палички з хумусом",
+      "Смак спогадів — мариновані гриби з цибулею",
+      "Теплі сторінки — жульєн із грибами та вершками",
+      "Нотатки на полях — міні‑деруни зі сметаною",
+      "Гарячий діалог — тости з сиром і травами",
+      "Крем натхнення — гарбузовий суп‑пюре з насінням",
+      "Класика жанру — борщ із пампушками",
+      "Лісова історія — грибний суп із локшиною",
+      "Осінній вечір — курка з яблуками та розмарином",
+      "Медові рядки — свинина в медово‑гірчичному соусі",
+      "Домашня глава — вареники з картоплею та грибами",
+      "Солодкий сюжет — вареники з вишнею",
+      "Паста натхнення — домашня паста з вершковим соусом",
+      "Овочеве рагу «Теплий дім»",
+      "Рибна пауза — запечена риба з лимоном і травами",
+      "Солодкий фінал — яблучна шарлотка з корицею",
+      "Медові спогади — домашній медовик",
+      "Ніжна пауза — чізкейк із карамеллю чи ягодами",
+      "Кава «Відкрита книга»",
+      "Чай «Зілля для натхнення»",
+      "Гарячий шоколад «Затишок»"
+    ];
+    document.getElementById('specialDish').innerText =
+      allDishes[Math.floor(Math.random() * allDishes.length)];
+  </script>
+</body>
+</html>
